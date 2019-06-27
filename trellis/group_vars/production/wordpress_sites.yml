@@ -1,0 +1,19 @@
+# Documentation: https://roots.io/trellis/docs/remote-server-setup/
+# `wordpress_sites` options: https://roots.io/trellis/docs/wordpress-sites
+# Define accompanying passwords/secrets in group_vars/production/vault.yml
+
+wordpress_sites:
+  wp-docker-roots.co:
+    site_hosts:
+      - canonical: wp-docker-roots.co
+    local_path: ../src # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@github.com:{github_username}/wp-docker-roots.git # replace with your Git repo URL
+    repo_subtree_path: src # relative path to your Bedrock/WP directory in your repo
+    branch: master
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
+      provider: letsencrypt
+    cache:
+      enabled: false
